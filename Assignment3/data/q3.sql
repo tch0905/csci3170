@@ -1,0 +1,11 @@
+SELECT E.ENAME
+FROM ENGINEER E, OFFICE O2
+WHERE E.ESALARY = (
+    SELECT MAX(temp.ESALARY)
+    FROM (
+        SELECT E2.ENAME, E2.ESALARY
+        FROM ENGINEER E2, OFFICE O
+        WHERE O.OFFICEID = E2.OFFICEID AND O.ONAME = 'Compatibility Tools Group'
+    )  temp
+) AND O2.ONAME = 'Compatibility Tools Group'
+ORDER BY E.ENAME ASC;

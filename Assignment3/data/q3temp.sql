@@ -1,0 +1,17 @@
+SELECT ENAME
+FROM ENGINEER
+WHERE OFFICEID = (
+    SELECT OFFICEID
+    FROM OFFICE
+    WHERE ONAME = 'Compatibility Tools Group'
+)
+AND ESALARY = (
+    SELECT MAX(ESALARY)
+    FROM ENGINEER
+    WHERE OFFICEID = (
+        SELECT OFFICEID
+        FROM OFFICE
+        WHERE ONAME = 'Compatibility Tools Group'
+    )
+)
+ORDER BY ENAME ASC;
